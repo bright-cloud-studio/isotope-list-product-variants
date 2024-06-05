@@ -1,4 +1,4 @@
 <?php
 
 // Frontend Modules
-$GLOBALS['FE_MOD']['isotope']['test123'] 	= 'Bcs\Module\ListProductVariants';
+$GLOBALS['FE_MOD']['bcs']['list_prod_var'] 	= 'Bcs\Module\ListProductVariants';
