@@ -40,8 +40,7 @@ use Contao\FrontendUser;
 class ListProductVariants extends ProductList
 {
     // Template
-    protected $strTemplate = 'mod_iso_list_ordered_products';
-    protected $strFormId = 'iso_mod_product_group_list';
+    protected $strTemplate = 'mod_iso_productlist';
     
     public function generate()
     {
@@ -53,42 +52,24 @@ class ListProductVariants extends ProductList
     
     protected function compile()
     {
-        // return message if no filter is set
-        if ($this->iso_emptyFilter && !Input::get('isorc') && !Input::get('keywords')) {
-            $this->Template->message  = Controller::replaceInsertTags($this->iso_noFilter);
-            $this->Template->type     = 'noFilter';
-            $this->Template->products = array();
-
-            return;
-        }
 
         global $objPage;
         $cacheKey      = $this->getCacheKey();
-        $arrProducts   = null;
+        $arrProducts   = array();
         $arrCacheIds   = null;
-
-        // Try to load the products from cache
-        if ($this->blnCacheProducts && ($objCache = ProductCache::findByUniqid($cacheKey)) !== null) {
-            $arrCacheIds = $objCache->getProductIds();
-
-            // Use the cache if keywords match. Otherwise we will use the product IDs as a "limit" for findProducts()
-            if ($objCache->keywords == Input::get('keywords')) {
-                $arrCacheIds = $this->generatePagination($arrCacheIds);
-
-                $objProducts = Product::findAvailableByIds($arrCacheIds, array(
-                    'order' => Database::getInstance()->findInSet(Product::getTable().'.id', $arrCacheIds)
-                ));
-
-                $arrProducts = (null === $objProducts) ? array() : $objProducts->getModels();
-
-                // Cache is wrong, drop everything and run findProducts()
-                if (\count($arrProducts) != \count($arrCacheIds)) {
-                    $arrCacheIds = null;
-                    $arrProducts = null;
-                }
-            }
+        
+        
+        
+        
+        
+        // load products here
+        $tmp_prods = $this->findOrderedProducts();
+        
+        foreach($tmp_prods as $prod) {
+            $arrProducts[] = $prod;
         }
 
+    
         if (!\is_array($arrProducts)) {
             // Display "loading products" message and add cache flag
             if ($this->blnCacheProducts) {
@@ -244,6 +225,79 @@ class ListProductVariants extends ProductList
 
         $this->Template->products = $arrBuffer;
     }
+    
+    
+    
+    
+    
+    
+    private function batchPreloadProducts()
+    {
+        $query = "SELECT c.pid, GROUP_CONCAT(c.page_id) AS page_ids FROM tl_iso_product_category c JOIN tl_page p ON c.page_id=p.id WHERE p.type!='error_403' AND p.type!='error_404'";
+
+        if (!BE_USER_LOGGED_IN) {
+            $time = Date::floorToMinute();
+            $query .= " AND p.published='1' AND (p.start='' OR p.start<'$time') AND (p.stop='' OR p.stop>'" . ($time + 60) . "')";
+        }
+
+        $query .= " GROUP BY c.pid";
+
+        $data = ['categories' => [], 'prices' => []];
+        $result = Database::getInstance()->execute($query);
+
+        while ($row = $result->fetchAssoc()) {
+            $data['categories'][$row['pid']] = explode(',', $row['page_ids']);
+        }
+
+        $t = ProductPrice::getTable();
+        $arrOptions = [
+            'column' => [
+                "$t.config_id=0",
+                "$t.member_group=0",
+                "$t.start=''",
+                "$t.stop=''",
+            ],
+        ];
+
+        /** @var ProductPriceCollection $prices */
+        $prices = ProductPrice::findAll($arrOptions);
+
+        if (null !== $prices) {
+            foreach ($prices as $price) {
+                if (!isset($data['prices'][$price->pid])) {
+                    $data['prices'][$price->pid] = $price;
+                }
+            }
+        }
+
+        return $data;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     // Custom function that returns an array of products that the user previously ordered
+    protected function findOrderedProducts($arrCacheIds = null)
+    {
+        
+        // Stores our templated products and their IDs to prevent duplicates
+        $arrProducts = [];
+		$arrIds = [];
+		
+		$arrProducts = Product::findBy(['tl_iso_product.pid=?'],[100]);
+
+        
+        // Return our templates items/products
+        return $arrProducts;
+    }
+    
+    
+    
 
 
   
