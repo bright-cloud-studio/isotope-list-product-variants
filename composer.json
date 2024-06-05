@@ -23,11 +23,11 @@
         "isotope/isotope-core": "^2.8"
     },
     "extra":{
-        "contao-manager-plugin": "Bcs\\ListVariantBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Bcs\\ListVariantsBundle\\ContaoManager\\Plugin"
     },
     "autoload": {
         "psr-4": {
-            "Bcs\\ListVariantBundle\\": "src"
+            "Bcs\\ListVariantsBundle\\": "src"
         },
         "classmap": [
             "src/Resources/contao"
