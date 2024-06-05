@@ -20,7 +20,7 @@
     "require":{
         "php": "^7.3 || ^8.0",
         "contao/core-bundle": "^4.9 || ^5.3",
-        "isotope/core": "^2.8"
+        "isotope/isotope-core": "^2.8"
     },
     "extra":{
         "contao-manager-plugin": "Bcs\\ListVariantBundle\\ContaoManager\\Plugin"
