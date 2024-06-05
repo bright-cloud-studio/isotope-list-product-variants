@@ -37,7 +37,7 @@ use Isotope\Interfaces\IsotopeProduct;
 
 use Contao\FrontendUser;
 
-class ListOrderedProducts extends ProductList
+class ListProductVariants extends ProductList
 {
     // Template
     protected $strTemplate = 'mod_iso_list_ordered_products';
