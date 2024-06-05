@@ -1,0 +1,42 @@
+{
+    "name":"bright-cloud-studio/isotope-list-product-variants",
+    "description":"Adds a customized Product List module to Isotope that lists product variants on Product Reader page",
+    "keywords": ["contao", "isotope", "bright", "cloud", "studio"],
+    "type": "contao-bundle",
+    "homepage": "http://brightcloudstudio.com/",
+    "license": "LGPL-3.0+",
+    "authors":[
+        {
+            "name": "Bright Cloud Studio",
+            "homepage": "https://brightcloudstudio.com",
+            "email": "mark@brightcloudstudio.com",
+            "role": "Developer"
+        }
+    ],
+    "support":{
+        "issues": "https://github.com/bright-cloud-studio/isotope-list-product-variants/issues",
+        "source": "https://github.com/bright-cloud-studio/isotope-list-product-variants"
+    },
+    "require":{
+        "php": "^7.3 || ^8.0",
+        "contao/core-bundle": "^4.9 || ^5.3",
+        "isotope/core": "^2.8"
+    },
+    "extra":{
+        "contao-manager-plugin": "Bcs\\ListVariantBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcs\\ListVariantBundle\\": "src"
+        },
+        "classmap": [
+            "src/Resources/contao"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]
+    }
+}
