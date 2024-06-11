@@ -18,8 +18,21 @@ class Hooks extends System
 
     /* HOOK - Triggered when trying to add a product to the cart on a Product Reader page */
     public function checkCollectionQuantity( Product $objProduct, $intQuantity, IsotopeProductCollection $objCollection ) {
-        echo "HOOKY";
-        die();
+        
+        /*
+        echo "<pre>";
+        print_r($objProduct);
+        echo "</pre><br><hr><br>";
+        
+        echo "<pre>";
+        print_r($intQuantity);
+        echo "</pre><br><hr><br>";
+        
+        echo "<pre>";
+        print_r($objCollection);
+        echo "</pre><br><hr><br>";
+        */
+        
     }
     
 }
