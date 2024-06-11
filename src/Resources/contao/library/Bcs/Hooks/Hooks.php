@@ -34,5 +34,27 @@ class Hooks extends System
         */
         
     }
+
+
+
+
+
+
+
+    public function onProcessForm($submittedData, $formData, $files, $labels, $form)
+    {
+        echo "BLAM";
+        die();
+
+        if($formData['formID'] == 'directory_submission') {
+        }
+    }
+
+
+
+
+
+
+    
     
 }
