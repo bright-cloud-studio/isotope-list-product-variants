@@ -18,7 +18,7 @@ use Isotope\Model\Product\AbstractProduct;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsFrontendModule(category: 'isotope')]
+#[AsFrontendModule(category: 'bcs')]
 class FigurProductsController extends AbstractFrontendModuleController
 {
     private IsotopeProduct|null $currentProduct = null;
