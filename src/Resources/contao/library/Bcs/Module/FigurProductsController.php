@@ -2,17 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Bright Cloud Studio's Isotope List Ordered Products
- *
- * Copyright (C) 2023 Bright Cloud Studio
- *
- * @package    bright-cloud-studio/isotope-list-ordered-products
- * @link       https://www.brightcloudstudio.com/
- * @license    http://opensource.org/licenses/lgpl-3.0.html
-**/
-
-  
 namespace Bcs\Module;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
@@ -29,11 +18,7 @@ use Isotope\Model\Product\AbstractProduct;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
-
-
-use Contao\FrontendUser;
-
+#[AsFrontendModule(category: 'isotope')]
 class FigurProductsController extends AbstractFrontendModuleController
 {
     private IsotopeProduct|null $currentProduct = null;
