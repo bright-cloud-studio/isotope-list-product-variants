@@ -27,7 +27,7 @@ use Isotope\Collection\ProductPrice as ProductPriceCollection;
 use Isotope\Model\Product;
 use Isotope\Model\ProductCache;
 use Isotope\Model\ProductPrice;
-use Isotope\Module\ProductList;
+use Isotope\Module\ProductVariantList;
 use Isotope\Model\ProductCollectionItem;
 use Isotope\Model\ProductCollection\Order;
 use Isotope\Interfaces\IsotopeProduct;
@@ -37,7 +37,7 @@ use Isotope\Interfaces\IsotopeProduct;
 
 use Contao\FrontendUser;
 
-class ListProductVariants extends ProductList
+class ListProductVariants extends ProductVariantList
 {
     // Template
     protected $strTemplate = 'mod_iso_productlist';
