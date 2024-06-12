@@ -2,7 +2,6 @@
 
 // Frontend Modules
 $GLOBALS['FE_MOD']['bcs']['list_prod_var'] 	= 'Bcs\Module\ListProductVariants';
-$GLOBALS['FE_MOD']['bcs']['figur_products_controller'] 	= 'Bcs\Module\ListProductVariants';
 
 /* Hooks */
 //$GLOBALS['TL_HOOKS']['processFormData'][]      = array('Bcs\Hooks\Hooks', 'onProcessForm');
